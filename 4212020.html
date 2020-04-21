@@ -17,7 +17,30 @@
         var petAge = 5;
         var petIsCat = true;
 
-        
+        if (confirmCats) {
+            alert(petName + " " + petType + " " + petAge);
+        } else {
+            alert("this is an outrage");
+        }
+
+        if (petIsCat) {
+            alert("My pet is a cat");
+        } else {
+            alert("my pet is not a cat");
+        }
+
+        if (petAge !== 7) {
+            alert("my pet is not 7 years old");
+        }
+        else if (petAge < 5) {
+            alert("my pet is less than 5 years old");
+        }
+        else if (petAge > 5) {
+            alert("my pet is older than 5 years old");
+        }
+
+
+
     </script>
 </body>
 
