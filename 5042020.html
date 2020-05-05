@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var confirmSushi = confirm("Do you like sushi?");
+        var confirmGingerTea = confirm("Do you like ginger tea?");
+        var sushiType = prompt("what kind of sushi do you like?");
+
+        if (confirmSushi) {
+            alert("You like " + sushiType + "!");
+        } else if (confirmGingerTea) {
+            alert("You like ginger tea!");
+        } else {
+            document.write("Ok, well fine")
+        }
+    </script>
+</body>
+
+</html>
