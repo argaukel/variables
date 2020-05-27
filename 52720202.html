@@ -8,9 +8,17 @@
 <body>
     <script>
         var myFarm = ["chickens", "pigs", "cows", "horses", "ostriches"];
+        console.log(myFarm + " test 1");
 
         for (var i = 0; i < myFarm.length; i++) {
-            console.log(myFarm[i]);
+            console.log(myFarm[i] + " loop test");
+            console.log(myFarm[i].toLowerCase() + " loop lower case");
+            console.log(myFarm[i] + " " + myFarm[i].toLowerCase().startsWith("c") + " starts with c test");
+            console.log(myFarm[i] + " " + myFarm[i].toLowerCase().startsWith("o") + " starts with o test");
+            if (myFarm[i].toLowerCase().startsWith("c") || myFarm[i].toLowerCase().startsWith("o")) {
+                console.log(myFarm[i] + " test if statement")
+                document.write(myFarm[i] + " ");
+            }
         }
 
     </script>
