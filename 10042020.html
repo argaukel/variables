@@ -7,15 +7,48 @@
 </head>
 <body>
     <script type="text/javascript">
-    var animals = ["parrot", "cat", "dog"];
-    console.log(animals.length);
-    console.log(animals[1]);
-    console.log(animals[2]);
-    console.log(animals[0]);
-    console.log(animals[animals.length]);
-    console.log(animals[animals.length - 1]);
-    console.log(animals.indexOf("bear"));
-    console.log(animals.indexOf("parrot"));
+    var aray = ["one", "two", "three", "four"];
+    var userResponse = prompt("Pick a number");
+    console.log(userResponse);
+    for (var i = 0; i < aray.length; i++) {
+        console.log(aray[i]);
+        if (userResponse === aray[i]){
+            console.log("ping");
+            alert("me too!")
+        } else {
+            console.log("pong");
+            alert("oh, not me")
+        }
+        // if (userResponse = aray[i]) {
+        //     alert("yay! Me too!")
+
+        // } else {
+        //     alert("oh, not me")
+        // }
+
+    }
+
+
+
+
+
+    // var animals = ["parrot", "cat", "dog"];
+    // console.log(animals.length);
+    // //3
+    // console.log(animals[1]);
+    // // cat
+    // console.log(animals[2]);
+    // // dog
+    // console.log(animals[0]);
+    // // parrot
+    // console.log(animals[animals.length]);
+    // // undefined
+    // console.log(animals[animals.length - 1]);
+    // // dog
+    // console.log(animals.indexOf("bear"));
+    // // undefined
+    // console.log(animals.indexOf("parrot"));
+    // // 0
     </script>
 </body>
 </html>
