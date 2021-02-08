@@ -1,0 +1,11 @@
+{
+  "name": "trial",
+  "version": "1.0.0",
+  "description": "package.json",
+  "main": "272021.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC"
+}

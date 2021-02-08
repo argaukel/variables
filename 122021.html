@@ -15,7 +15,7 @@
         <p id="ties-text"></p>
     </div>
     <script type="text/javascript">
-    var ComputerChoices = ["r", "s", "p"];
+    var computerChoices = ["r", "s", "p"];
     var wins = 0;
     var losses = 0;
     var ties = 0;
@@ -26,6 +26,21 @@
     var winsText = document.getElementById("wins-text");
     var lossesText = document.getElementById("losses-text");
     var tiesText = document.getElementById("ties-text");
+
+    document.onkeyup = function(event) {
+        var userGuess = event.key;
+
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+        console.log(userGuess);
+        console.log(computerGuess);
+
+        if (userGuess === computerGuess) {
+            ties++;
+        } else if ((userGuess === "r" && computerGuess === "s") || (userGuess === "p" && computerGuess === "r") || (userGuess === "s" && computerGuess ==="p")) {
+            wins++;
+        }
+    }
 
     </script>
 </body>
