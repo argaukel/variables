@@ -12,3 +12,6 @@ CREATE TABLE songs (
     PRIMARY KEY (id)
 );
 
+INSERT INTO songs (title, artist, genre)
+VALUES ("The Breeze and Beatrice", "iamalex", "lofi"), ("dark blue", "DRWN.", "lofi"), 
+    ("Business as Usual", "Guggenz", "Chillhop"), ("Green Tea", "Eli Way", "Chillhop");
