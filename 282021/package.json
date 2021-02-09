@@ -1,0 +1,14 @@
+{
+  "name": "playlist",
+  "version": "1.0.0",
+  "description": "pull info from mysql db",
+  "main": "playlist.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "author": "agaukel",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  }
+}
