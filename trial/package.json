@@ -1,11 +1,17 @@
+
+
 {
-  "name": "trial",
+  "name": "ice-cream-db-read-data",
   "version": "1.0.0",
-  "description": "package.json",
+  "description": "",
   "main": "272021.js",
   "scripts": {
-    "test": "test"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.16.0"
+  }
 }
