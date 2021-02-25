@@ -57,6 +57,12 @@ function runPrompts() {
         testInsert(answers.title, answers.artist, answers.genre);
     })
 }
+
+function endConnection() {
+    connection.end();
+};
+
+
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
@@ -69,7 +75,7 @@ connection.connect(function(err) {
     // insertSong();
     // deleteSongDynamic(5);
     // inquiry();
-    connection.end();
+    // connection.end();
 });
 
 // function inquiry() {
@@ -151,6 +157,21 @@ function deleteSongDynamic(id) {
 
 function testInsert(title, artist, genre) {
     console.log(title + " " + artist + " " + genre);
+    var insertQuery = connection.query(
+        "INSERT INTO songs SET ?",
+        {
+            title: title,
+            artist: artist,
+            genre: genre,
+        },
+        function(err, res) {
+            if (err) throw err;
+            console.log(res.affectedRows + " products updated!\n");
+        });
+        console.log(insertQuery.sql);
+        queryAllSongs();
+        endConnection()
+    
 }
 
 function insertSongDynamic(title, artist, genre) {
