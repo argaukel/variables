@@ -11,7 +11,7 @@ database: "playlist_db"
 
 var genrePrompt = {
     type: "list",
-    name: "Genre",
+    name: "genre",
     message: "What Genre?",
     choices: [
         "lofi",
@@ -34,7 +34,7 @@ var titlePrompt = {
 
 var artistPrompt = {
     type: "input",
-    name: "Artist",
+    name: "artist",
     message: "Who's the artist?",
     validate: function (value) {
         if (value == "") {
@@ -54,6 +54,7 @@ var questions = [
 function runPrompts() {
     inquirer.prompt(questions).then(answers => {
         console.log(answers);
+        testInsert(answers.title, answers.artist, answers.genre);
     })
 }
 connection.connect(function(err) {
@@ -147,6 +148,10 @@ function deleteSongDynamic(id) {
     );
     console.log(deleteQuery.sql);
 };
+
+function testInsert(title, artist, genre) {
+    console.log(title + " " + artist + " " + genre);
+}
 
 function insertSongDynamic(title, artist, genre) {
     var insertQuery = connection.query(
