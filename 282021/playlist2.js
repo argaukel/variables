@@ -9,9 +9,57 @@ database: "playlist_db"
 
 });
 
+var genrePrompt = {
+    type: "list",
+    name: "Genre",
+    message: "What Genre?",
+    choices: [
+        "lofi",
+        "Chillhop"
+    ]
+};
+
+var titlePrompt = {
+    type: "input",
+    name: "title",
+    message: "What's the title",
+    validate: function (value) {
+        if (value == "") {
+            console.log("you gotta choose")
+        } else {
+            return true;
+        }
+    }
+};
+
+var artistPrompt = {
+    type: "input",
+    name: "Artist",
+    message: "Who's the artist?",
+    validate: function (value) {
+        if (value == "") {
+            console.log("c'mon now!")
+        } else {
+            return true;
+        }
+    }
+};
+
+var questions = [
+    genrePrompt,
+    titlePrompt,
+    artistPrompt,
+]
+
+function runPrompts() {
+    inquirer.prompt(questions).then(answers => {
+        console.log(answers);
+    })
+}
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
+    runPrompts();
     // insertSongDynamic("Sleepy Vibes", "The Deli", "lofi");
     // updateSongDynamic("Redberry tea", "Eli Way");
     // queryAllSongs();
