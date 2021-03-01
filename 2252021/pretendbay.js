@@ -11,8 +11,14 @@ var connection = mysql.createConnection ({
 function runPostItem() {
     inquirer.prompt(newItem).then(answers => {
         console.log(answers);
+        console.log(answers.starting_price)
+        newItemUpdate(answers.item, answers.category, answers.starting_price);
     })
     connection.end();
+}
+
+function newItemUpdate(item, category, starting_price) {
+    console.log(item + " " + category + " " + starting_price)
 }
 
 connection.connect(function(err) {
@@ -46,7 +52,7 @@ var newItem = [
     },
     {
         type: 'input',
-        name: 'staring price',
+        name: 'starting_price',
         message: 'What is your starting price?',
         validate: function (value) {
             if (value == "") {
