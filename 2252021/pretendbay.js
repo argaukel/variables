@@ -8,17 +8,34 @@ var connection = mysql.createConnection ({
     database: "bay_db"
 });
 
-function runPostItem() {
-    inquirer.prompt(newItem).then(answers => {
-        console.log(answers);
-        console.log(answers.starting_price)
-        newItemUpdate(answers.item, answers.category, answers.starting_price);
-    })
+function endConnection() {
     connection.end();
 }
 
+function runPostItem() {
+    inquirer.prompt(newItem).then(answers => {
+        console.log(answers);
+        // console.log(answers.starting_price)
+        newItemUpdate(answers.item, answers.category, answers.starting_price);
+    })
+    // connection.end();
+}
+
 function newItemUpdate(item, category, starting_price) {
-    console.log(item + " " + category + " " + starting_price)
+    console.log(item + " " + category + " " + starting_price);
+    var insertQuery = connection.query(
+        "INSERT INTO bay SET ?",
+        {
+            item_name: item,
+            category: category,
+            starting_bid: starting_price,
+        },
+        function(err, res) {
+            if (err) throw err;
+            console.log(res.affectedRows + " was added!\n");
+        });
+        console.log(insertQuery.sql);
+        endConnection();
 }
 
 connection.connect(function(err) {
