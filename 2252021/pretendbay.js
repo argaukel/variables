@@ -12,6 +12,41 @@ function endConnection() {
     connection.end();
 }
 
+function queryAllItems() {
+    connection.query("SELECT * FROM bay", function(err, res) {
+        if (err) throw err;
+        console.table(res);
+    })
+
+}
+
+function listItems() {
+    connection.query("SELECT * FROM bay", function(err, res) {
+        if (err) throw err;
+        // console.log(res.map(bay => bay.item_name));
+        inquirer.prompt([
+            {
+                name: "selectItem",
+                message: "here's everything",
+                type: "list",
+                choices: res.map(bay => bay.item_name)
+            },
+            {
+                name: "bid",
+                message: "What is your bid?"
+            }
+        ])
+        .then(answers => {
+            console.log(answers.selectItem + " & " + answers.bid);
+            
+            
+        })
+
+
+    })
+    endConnection();
+}
+
 function runPostItem() {
     inquirer.prompt(newItem).then(answers => {
         console.log(answers);
@@ -35,13 +70,16 @@ function newItemUpdate(item, category, starting_price) {
             console.log(res.affectedRows + " was added!\n");
         });
         console.log(insertQuery.sql);
+        queryAllItems();
         endConnection();
 }
 
 connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
-    runPostItem();
+    // runPostItem();
+    // queryAllItems();
+    listItems();
 });
 
 var newItem = [
