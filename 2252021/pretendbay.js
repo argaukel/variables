@@ -60,7 +60,8 @@ function buyOrSell() {
         console.log(answers);
         if (answers.buyorsell == "SELL") {
             console.log("sell");
-            endConnection();
+            runPostItem();
+            // endConnection();
         } else {
             console.log("buy");
             endConnection();
@@ -139,11 +140,19 @@ function listItems() {
 
 
 function runPostItem() {
-    inquirer.prompt(newItem).then(answers => {
+    connection.query("SELECT * FROM bay WHERE ?", [{
+        creator: userName
+    }], (err, res) => {
+        console.log("userName " + userName);
+        console.table(res);
+        inquirer.prompt(newItem).then(answers => {
+        answers.creator = userName;     
         console.log(answers);
         // console.log(answers.starting_price)
-        newItemUpdate(answers.item, answers.category, answers.starting_price);
+        newItemUpdate(answers.item, answers.category, answers.starting_price, answers.creator);
+    });
     })
+    
     // connection.end();
 }
 
@@ -164,7 +173,7 @@ function updateItem () {
     console.log(updateBid.sql);
 }
 
-function newItemUpdate(item, category, starting_price) {
+function newItemUpdate(item, category, starting_price, creator) {
     console.log(item + " " + category + " " + starting_price);
     var insertQuery = connection.query(
         "INSERT INTO bay SET ?",
@@ -172,6 +181,7 @@ function newItemUpdate(item, category, starting_price) {
             item_name: item,
             category: category,
             starting_bid: starting_price,
+            creator: creator
         },
         function(err, res) {
             if (err) throw err;
