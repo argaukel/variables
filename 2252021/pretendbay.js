@@ -1,12 +1,47 @@
 const mysql = require("mysql");
 const inquirer  = require("inquirer");
 
+var userName = "";
 var connection = mysql.createConnection ({
     port: 3306,
     user: "newuser",
     password: "password",
     database: "bay_db"
 });
+
+connection.connect(function(err) {
+    if (err) throw err;
+    console.log("connected as id " + connection.threadId);
+    // runPostItem();
+    // queryAllItems();
+    // updateItem()
+    login();
+    // listItems();
+    // endConnection();
+});
+
+function login() {
+    inquirer.prompt 
+        (
+            [
+                {
+                    name: "userName",
+                    message: "User Name"
+                },
+                {
+                    name: "password",
+                    message: "Password",
+                    type: "password"
+                }   
+            ]
+        ).then(answers => {
+            console.log(answers);
+            userName = answers.userName
+            endConnection();
+        })
+};
+
+
 
 function endConnection() {
     console.log("end connection")
@@ -121,16 +156,7 @@ function newItemUpdate(item, category, starting_price) {
         endConnection();
 }
 
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId);
-    // runPostItem();
-    // queryAllItems();
-    // updateItem()
-    
-    listItems();
-    // endConnection();
-});
+
 
 var newItem = [
     {
