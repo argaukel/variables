@@ -37,11 +37,37 @@ function login() {
         ).then(answers => {
             console.log(answers);
             userName = answers.userName
-            endConnection();
+            buyOrSell();
         })
 };
 
-
+function buyOrSell() {
+    inquirer.prompt
+    (
+        [
+            {
+                message: "Are you buying or selling?",
+                name: "buyorsell",
+                type: "list",
+                choices: 
+                [
+                    "BUY",
+                    "SELL"
+                ]
+            }
+        ]
+    ).then(answers => {
+        console.log(answers);
+        if (answers.buyorsell == "SELL") {
+            console.log("sell");
+            endConnection();
+        } else {
+            console.log("buy");
+            endConnection();
+        }
+        
+    })
+}
 
 function endConnection() {
     console.log("end connection")
