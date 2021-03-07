@@ -9,6 +9,7 @@ var connection = mysql.createConnection ({
 });
 
 function endConnection() {
+    console.log("end connection")
     connection.end();
 }
 
@@ -38,14 +39,43 @@ function listItems() {
         ])
         .then(answers => {
             console.log(answers.selectItem + " & " + answers.bid);
-            
+            // console.log(res);
+            var itemBidOn = res.find(bay => bay.item_name == answers.selectItem);
+            // console.log(itemBidOn)
+            console.log(itemBidOn.starting_bid);
+            console.log(answers.bid);
+            if (itemBidOn.starting_bid >= answers.bid) {
+                console.log("You're not the highest bidder")
+            } else {
+                console.log(itemBidOn.id);
+                console.log(answers.bid);
+                // var updatePrice = 
+                connection.query("UPDATE bay SET ? WHERE ?", 
+                [
+                    {
+                        highest_bid: answers.bid,
+                    },
+                    {
+                        id: itemBidOn.id,
+                        
+                    },
+                ], (err, res) => {
+                    console.log("New highest bid!")
+                    console.log(res)
+                    endConnection();
+                    console.log("hit!")
+                })
+                // console.log(updatePrice.sql);
+            }
             
         })
 
 
     })
-    endConnection();
+    // endConnection();
+    
 }
+
 
 function runPostItem() {
     inquirer.prompt(newItem).then(answers => {
@@ -54,6 +84,23 @@ function runPostItem() {
         newItemUpdate(answers.item, answers.category, answers.starting_price);
     })
     // connection.end();
+}
+
+function updateItem () {
+    var updateBid = connection.query("UPDATE bay SET ? WHERE ?", 
+    [
+        {
+        highest_bid: 15
+        },
+        {
+        id: 2,
+        },
+        
+    ], (err, res) => {
+        console.log("updated!");
+        console.log(res)
+    })
+    console.log(updateBid.sql);
 }
 
 function newItemUpdate(item, category, starting_price) {
@@ -79,7 +126,10 @@ connection.connect(function(err) {
     console.log("connected as id " + connection.threadId);
     // runPostItem();
     // queryAllItems();
+    // updateItem()
+    
     listItems();
+    // endConnection();
 });
 
 var newItem = [
