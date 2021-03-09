@@ -145,12 +145,28 @@ function runPostItem() {
     }], (err, res) => {
         console.log("userName " + userName);
         console.table(res);
-        inquirer.prompt(newItem).then(answers => {
-        answers.creator = userName;     
-        console.log(answers);
-        // console.log(answers.starting_price)
-        newItemUpdate(answers.item, answers.category, answers.starting_price, answers.creator);
-    });
+        inquirer.prompt
+        (
+            {
+                name: "action",
+                message: "What's on the agenda?",
+                type: "list",
+                choices:
+                [
+                    "New Item", "Edit Current Item", "Close Bidding"
+                ]
+            }
+        ).then(answers => {
+            if (answers.action == "New Item") {
+              inquirer.prompt(newItem).then(answers => {
+                answers.creator = userName;     
+                console.log(answers);
+                // console.log(answers.starting_price)
+                newItemUpdate(answers.item, answers.category, answers.starting_price, answers.creator);
+            });  
+            }
+        })
+        
     })
     
     // connection.end();
