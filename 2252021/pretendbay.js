@@ -164,6 +164,21 @@ function runPostItem() {
                 // console.log(answers.starting_price)
                 newItemUpdate(answers.item, answers.category, answers.starting_price, answers.creator);
             });  
+            } else if (answers.action == "Edit Current Item") {
+                // console.log(answers)
+                // console.log(res);
+                inquirer.prompt(
+                        [
+                            {
+                                name: "itemName",
+                                message: "Which item are you editing?",
+                                type: "list",
+                                choices: res.map(bay => bay.item_name)
+                            }
+
+                        ]
+                    )
+                endConnection();
             }
         })
         
