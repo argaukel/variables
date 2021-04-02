@@ -144,7 +144,7 @@ function runPostItem() {
         creator: userName
     }], (err, res) => {
         console.log("userName " + userName);
-        console.table(res);
+        // console.table(res);
         inquirer.prompt
         (
             {
@@ -177,8 +177,32 @@ function runPostItem() {
                             }
 
                         ]
-                    )
-                endConnection();
+                    ).then(answers => {
+                        let editItem = res.find(bay => bay.item_name == answers.itemName);
+                        console.log(editItem);
+                        inquirer.prompt(
+                            [
+                                {
+                                    name: "item_name",
+                                    message: `New Name (${editItem.item_name})`
+                                },
+                                {
+                                    name: "highest_bid",
+                                    message: `Change highest bid amount (${editItem.highest_bid})`
+                                }
+                            ]
+                        ).then(answers => {
+                            console.log("answers " + answers.item_name)
+                            connection.query("UPDATE bay SET ? WHERE ?", [answers, {
+                                id: editItem.id
+                            }], (err, res) => {
+                                console.log(res.sql);
+                                endConnection();
+                            })
+                        })
+                        
+                    })
+                // endConnection();
             }
         })
         
