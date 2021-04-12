@@ -1,17 +1,29 @@
-var http = require("http");
-var fs = require("fs");
+var express = require("express");
+var app = express();
+var PORT = 3000;
 
-var PORT = 8080;
+var yoda = {
+    name: "Yoda",
+    role: "Jedi Master",
+    age: 900,
+    forcePoints: 2000
+};
 
-var server = http.createServer(handleRequest);
+var darthmaul = {
+    name: "Darth Maul",
+    role: "Sith Lord",
+    age: 200,
+    forcePoints: 1200
+};
 
-function handleRequest(request, response) {
-    fs.readFile(__dirname + "/index.html", function(error, data) {
-        response.writeHead(200, { "Content-Type": "text/html" });
-        response.end(data);
-    });
-}
+app.get("/", function(request, response) {
+    response.send("Welcome to the Star Wars Page!")
+});
 
-server.listen(PORT, function() {
-    console.log("Server is listening on PORT: " + PORT);
-})
+app.get("/yoda", function(request, response) {
+    response.json(yoda);
+});
+
+app.get("/darthmaul", function(request, response) {
+    response.json(darthmaul);
+});

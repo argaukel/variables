@@ -1,6 +1,7 @@
 {
-  "name": "04032021",
+  "name": "04122021",
   "version": "1.0.0",
+  "description": "express js",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,9 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "http": "0.0.1-security"
-  },
-  "devDependencies": {},
-  "description": ""
+    "express": "^4.17.1"
+  }
 }
