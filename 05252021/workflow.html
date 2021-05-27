@@ -6,7 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <script tyle="text/javascript">
+    <script type="text/javascript">
+        // confirming customer/billing address
         var stepOne = confirm("Does the name on the account match the billing address?");
         // check email/check gift message
         var stepOneOne = confirm("confirm order")
@@ -22,7 +23,14 @@
         var stepSeven = confirm("select order vrs jobs");
         var stepEight = confirm("check for quantity in retail locations and bins");
         // furnished / custom items
-        var stepNine = confirm("check the quantity colum")
+        var stepNine = confirm("check the quantity colum");
+
+        // confirm customer billing address
+        if (stepOne) {
+            alert("Move on!")
+        } else {
+            alert("Edit the billing")
+        }
     </script>
 </body>
 </html>
